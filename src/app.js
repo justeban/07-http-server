@@ -29,13 +29,17 @@ const requestHandler = (req,res) => {
   if (req.method === 'GET' && req.url.pathname === '/cowsay') {
     fs.readFile('./index.html', (err, data) => {
       if (err) throw err;
-      
+
       let cowtalk = null;
 
       if (req.url.query.text) {
-        cowtalk = cowsay.say({text: req.url.query.text});
+        cowtalk = cowsay.say({
+          text: req.url.query.text
+        });
       } else {
-        cowtalk = cowsay.say({text: 'I need somtheing good to say.'});
+        cowtalk = cowsay.say({
+          text: 'I need somtheing good to say.'
+        });
       }
 
       let result = data.toString().replace(/Cowsay Content/, cowtalk);
